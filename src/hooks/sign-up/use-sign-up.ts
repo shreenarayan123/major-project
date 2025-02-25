@@ -50,21 +50,25 @@ export const useSignUpForm = () => {
 
   const onHandleSubmit = methods.handleSubmit(
     async (values: UserRegistrationProps) => {
+      console.log(values, "values");
       if (!isLoaded) return
-
+      console.log( "is loaded");
       try {
         setLoading(true)
         const completeSignUp = await signUp.attemptEmailAddressVerification({
           code: values.otp,
         })
+        console.log( "set loading true");
 
         if (completeSignUp.status !== 'complete') {
+          console.log(completeSignUp,  "not complete status");
           return { message: 'Something went wrong!' }
+          
         }
 
         if (completeSignUp.status == 'complete') {
           if (!signUp.createdUserId) return
-
+          console.log( "before creating new user");
           const registered = await onCompleteUserRegistration(
             values.fullname,
             signUp.createdUserId,

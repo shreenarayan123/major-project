@@ -70,7 +70,7 @@ const FormGenerator = ({
             id={`select-${label}`}
             {...register(name)}
           >
-            {options?.length &&
+            {options?.length && 
               options.map((option) => (
                 <option
                   value={option.value}
@@ -115,9 +115,8 @@ const FormGenerator = ({
               </p>
             )}
           />
-        </Label>
+        </Label>         
       )
-      defualt: return <></>
   }
 }
 

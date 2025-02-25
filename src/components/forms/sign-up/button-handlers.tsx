@@ -23,6 +23,7 @@ const ButtonHandler = (props: Props) => {
         <Button
           type="submit"
           className="w-full"
+          onClick={() => setCurrentStep((prev: number) => prev + 1)}
         >
           Create an account
         </Button>

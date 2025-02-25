@@ -25,15 +25,15 @@ export const onCompleteUserRegistration = async (
         type: true,
       },
     })
-
+    console.log(registered, 'registered');
     if (registered) {
+      console.log(registered, 'registered');
       return { status: 200, user: registered }
     }
   } catch (error) {
     return { status: 400 }
   }
 }
-
 export const onLoginUser = async () => {
   const user = await currentUser()
   if (!user) redirectToSignIn()

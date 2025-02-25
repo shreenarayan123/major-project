@@ -21,11 +21,17 @@ type Props = {}
 
 const Page = async (props: Props) => {
   const clients = await getUserClients()
+  console.log(clients, "clients");
   const sales = await getUserBalance()
+  console.log(sales, "sales");
   const bookings = await getUserAppointments()
+  console.log(bookings, "bookings");
   const plan = await getUserPlanInfo()
+  console.log(plan, "plan");
   const transactions = await getUserTransactions()
+  console.log(transactions, "transactions");
   const products = await getUserTotalProductPrices()
+  console.log(products, "products");
 
   return (
     <>

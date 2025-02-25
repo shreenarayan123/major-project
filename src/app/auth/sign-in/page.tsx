@@ -20,7 +20,7 @@ const SignInPage = () => {
                 Submit
               </Button>
               <p>
-                Don’t have an account?{' '}
+                Don't have an account?{' '}
                 <Link
                   href="/auth/sign-up"
                   className="font-bold"
