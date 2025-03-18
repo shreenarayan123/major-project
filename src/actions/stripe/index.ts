@@ -4,15 +4,14 @@ import { client } from '@/lib/prisma'
 import { currentUser } from '@clerk/nextjs'
 import Stripe from 'stripe'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET!, {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   typescript: true,
-  apiVersion: '2024-04-10',
-})
-
+});
 export const onCreateCustomerPaymentIntentSecret = async (
   amount: number,
   stripeId: string
 ) => {
+  console.log(amount, stripeId, "amount, stripeId")
   try {
     const paymentIntent = await stripe.paymentIntents.create(
       {
@@ -20,6 +19,17 @@ export const onCreateCustomerPaymentIntentSecret = async (
         amount: amount * 100,
         automatic_payment_methods: {
           enabled: true,
+        },
+        description: "Software product purchase", 
+        shipping: {
+          name: "Sunny",
+          address: {
+            line1: "143 Street",
+            city: "Mumbai",
+            postal_code: "11234",
+            state: "Maharashtra",
+            country: "IN"
+          }
         },
       },
       { stripeAccount: stripeId }

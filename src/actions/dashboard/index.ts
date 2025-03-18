@@ -4,9 +4,8 @@ import { client } from '@/lib/prisma'
 import { currentUser } from '@clerk/nextjs'
 import Stripe from 'stripe'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET!, {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   typescript: true,
-  apiVersion: '2024-04-10',
 })
 
 export const getUserClients = async () => {
@@ -140,7 +139,7 @@ export const getUserTransactions = async () => {
           stripeId: true,
         },
       })
-
+      console.log(connectedStripe?.stripeId, "connectedStripe");  
       if (connectedStripe) {
         const transactions = await stripe.charges.list({
           stripeAccount: connectedStripe.stripeId!,

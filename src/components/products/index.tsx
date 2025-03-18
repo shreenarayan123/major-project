@@ -20,7 +20,6 @@ type Props = {
   }[]
   id: string
 }
-
 const ProductTable = ({ id, products }: Props) => {
   return (
     <div>

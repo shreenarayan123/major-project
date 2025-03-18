@@ -56,7 +56,7 @@ export const CreateProductForm = ({ id }: CreateProductFormProps) => {
             </p>
           )}
         />
-      </div>
+      </div>s
       <FormGenerator
         inputType="input"
         register={register}

@@ -249,7 +249,7 @@ export const onAiChatBotAssistant = async (
           ],
           // model: 'gpt-4o-mini',
         })
-
+        console.log(chatCompletion.choices[0].message.content,"chatCompletion.choices[0].message.content")
         if (chatCompletion.choices[0].message.content?.includes('(realtime)')) {
           const realtime = await client.chatRoom.update({
             where: {

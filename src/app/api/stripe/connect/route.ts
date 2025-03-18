@@ -3,35 +3,21 @@ import { currentUser } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET!, {
-  typescript: true,
-  apiVersion: '2024-04-10',
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    typescript: true,
 })
 
 export async function GET() {
   try {
     const user = await currentUser()
-    if (!user) return new NextResponse('User not authenticated')
+    if (!user) return new NextResponse('User not authenticated', { status: 401 })
 
+    // Use Standard account type for India
     const account = await stripe.accounts.create({
-      country: 'US',
-      type: 'custom',
+      type: 'standard',
+      country: 'IN',
       business_type: 'company',
-      capabilities: {
-        card_payments: {
-          requested: true,
-        },
-        transfers: {
-          requested: true,
-        },
-      },
-      external_account: 'btok_us',
-      tos_acceptance: {
-        date: 1547923073,
-        ip: '172.18.80.19',
-      },
     })
-
     if (account) {
       const approve = await stripe.accounts.update(account.id, {
         business_profile: {
@@ -43,7 +29,7 @@ export async function GET() {
             city: 'Fairfax',
             line1: '123 State St',
             postal_code: '22031',
-            state: 'VA',
+            state: 'MH',
           },
           tax_id: '000000000',
           name: 'The Best Cookie Co',
@@ -143,10 +129,12 @@ export async function GET() {
         }
       }
     }
+    
   } catch (error) {
-    console.error(
-      'An error occurred when calling the Stripe API to create an account:',
-      error
+    console.error('An error occurred when calling the Stripe API:', error)
+    return NextResponse.json(
+      { error: (error as Error).message },
+      { status: 400 }
     )
   }
 }

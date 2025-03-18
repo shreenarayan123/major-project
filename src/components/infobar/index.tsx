@@ -1,10 +1,10 @@
-import React from 'react'
-import BreadCrumb from './bread-crumb'
-import { Card } from '../ui/card'
-import { Headphones, Star, Trash } from 'lucide-react'
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+import React from "react";
+import BreadCrumb from "./bread-crumb";
+import { Card } from "../ui/card";
+import { Headphones, Star, Trash } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
-type Props = {}
+type Props = {};
 
 const InfoBar = (props: Props) => {
   return (
@@ -16,22 +16,19 @@ const InfoBar = (props: Props) => {
             <Trash />
             <Star></Star>
           </Card>
-        </div>
+        </div>{" "}
         <Avatar>
           <AvatarFallback className="bg-orange text-white">
             <Headphones />
           </AvatarFallback>
         </Avatar>
         <Avatar>
-          <AvatarImage
-            src="https://github.com/shadcn.png"
-            alt="@shadcn"
-          />
+          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default InfoBar
+export default InfoBar;
